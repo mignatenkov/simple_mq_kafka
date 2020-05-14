@@ -17,6 +17,8 @@ import java.io.IOException;
 @EnableScheduling
 public class SimpleMqKafkaApplication {
 
+    public static final String TOPIC_NAME = "server.simpleEntityTopic";
+
     public static void main(String[] args) {
         SpringApplication.run(SimpleMqKafkaApplication.class, args);
     }
