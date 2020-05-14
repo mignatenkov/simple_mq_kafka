@@ -3,6 +3,7 @@ package com.korfax.simple_mq_kafka.producer;
 import com.korfax.simple_mq_kafka.model.SimpleEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
@@ -10,15 +11,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class KafkaProducer {
 
-    private final KafkaTemplate<Long, SimpleEntity> kafkaStarshipTemplate;
+    private final KafkaTemplate<Long, SimpleEntity> kafkaTemplate;
+    private String topicName;
 
     @Autowired
-    public KafkaProducer(KafkaTemplate<Long, SimpleEntity> kafkaStarshipTemplate) {
-        this.kafkaStarshipTemplate = kafkaStarshipTemplate;
+    public KafkaProducer(KafkaTemplate<Long, SimpleEntity> kafkaTemplate, @Value("kafka.topicName") String topicName) {
+        this.kafkaTemplate = kafkaTemplate;
+        this.topicName = topicName;
     }
 
     public void send(SimpleEntity dto) {
-        kafkaStarshipTemplate.send("server.testEntity", dto);
+        kafkaTemplate.send(topicName, dto);
     }
 
 }

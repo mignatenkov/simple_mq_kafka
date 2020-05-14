@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class KafkaConsumer {
 
-    @KafkaListener(id = "SimpleEntity", topics = {"server.testEntity"}, containerFactory = "singleFactory")
+    @KafkaListener(id = "SimpleEntity", topics = {"server.simpleEntity"}, containerFactory = "singleFactory")
     public void consume(SimpleEntity dto) {
         log.info("=> consumed {}", dto.toString());
     }

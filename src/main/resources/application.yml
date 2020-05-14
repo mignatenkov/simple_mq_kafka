@@ -3,3 +3,4 @@ kafka:
   producer.id: producerServer
   server: localhost:9092
   group.id: server.broadcast
+  topicName: server.simpleEntity
